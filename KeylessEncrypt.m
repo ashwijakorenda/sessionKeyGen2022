@@ -11,7 +11,7 @@ LMD = [];
 for i = 1:16
     rotatedMD = circshift(SMD,i);
     hashedRotatedMD = DataHash(rotatedMD, Opt);
-    LMD =[LMD,hex2bin(hashedRotatedMD)]  ;  
+    LMD =strcat(LMD,hashedRotatedMD)  ;  
 end
 
 %%Divide LMD into blocks: address 7 bits, order 7 bits, current 3bits
@@ -22,7 +22,8 @@ end
 Q_I_current = gray2dec(Q_I);
 
 %greyCurrent = decToGray(Q_I);
-currentLevels = getGlobalCurrent();
+currentLevels = setGlobalCurrent();
+%currentLevels = getGlobalCurrent();
 serverResponse = getGlobalServer();
 Resistance_Cipher = [];
 x_dimension = 64;
